@@ -53,12 +53,51 @@ window.PhoneAgenda = {
         })
     },
 
+    updateContact:function (id,firstName, lastName, phoneNumber){
+
+        const firstNameValue = $('#contact-first-name').val();
+        const lastNameValue = $('#contact-last-name').val();
+        const phoneNumberValue = $('#contact-phone-number').val();
+
+
+        let body = {
+            firstName:firstNameValue,
+            lastName:lastNameValue,
+            phoneNumber:phoneNumberValue
+        }
+
+
+
+      $.ajax({
+          url:PhoneAgenda.API_URL + '?id='+id,
+          method:"PUT",
+          contentType: "application/jason",
+          data:JSON.stringify(body)
+      }).done(function (){
+          PhoneAgenda.getContacts();
+      })
+
+
+
+
+    },
+
+    deleteContact:function (id){
+        $.ajax({
+            url:PhoneAgenda.API_URL + '?id='+id,
+            method:"DELETE",
+        }).done(function (){
+            PhoneAgenda.getContacts();
+        });
+
+    },
+
     getContactRow: function (contact) {
         return `
-             <tr>
-                <td>${contact.firstName}</td>
-                <td>${contact.lastName}</td>
-                <td>${contact.phoneNumber}</td>
+             <tr data-id=${contact.id}>
+                <td >${contact.firstName}</td>
+                <td >${contact.lastName}</td>
+                <td >${contact.phoneNumber}</td>
                 <td><a href="#" class="fas fa-trash-alt" data-id=${contact.id}></a>
                     <a href="#" class="fas fa-user-edit" data-id=${contact.id}></a>
                 </td>
@@ -86,6 +125,27 @@ window.PhoneAgenda = {
 
 
         });
+
+    $('#contacts').delegate('.fa-user-edit', 'click',function (event){
+        event.preventDefault();
+
+        const id = $(this).data("id");
+
+
+
+        PhoneAgenda.updateContact();
+        });
+
+
+    $('#contacts').delegate('.fa-trash-alt','click', function (event){
+       event.preventDefault();
+
+       const  id = $(this).data('id');
+
+       PhoneAgenda.deleteContact(id);
+
+    });
+
     }
 
 };
