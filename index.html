@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Agenda</title>
+    <link rel="stylesheet" href="css/main.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Ranchers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+</head>
+<body>
+
+<div id="main-content">
+    <h1 class="title">Phone Agenda</h1>
+
+
+
+    <div id="existing-contact">
+        <table id="contacts">
+
+            <thead>
+
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Phone number</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>Antal</td>
+                <td>Matyas</td>
+                <td>0770122221</td>
+                <td><a href="#" class="fas fa-trash-alt"></a>
+                    <a href="#" class="fas fa-user-edit"></a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Markus</td>
+                <td>Szabolcs</td>
+                <td>0770453534</td>
+                <td><a href="#" class="fas fa-trash-alt"></a>
+                    <a href="#" class="fas fa-user-edit"></a>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td>Gabor</td>
+                <td>Soma</td>
+                <td>0770123123</td>
+                <td><a href="#" class="fas fa-trash-alt"></a>
+                    <a href="#" class="fas fa-user-edit"></a>
+                </td>
+            </tr>
+            </tbody>
+
+
+        </table>
+
+
+        <div id="create-contact">
+            <h2>Create contact</h2>
+
+            <form id="create-contact-form">
+                <label for="contact-first-name">First name:</label>
+                <input type="text" id="contact-first-name" placeholder="Enter first name">
+
+                <label for="contact-last-name">Last Name:</label>
+                <input type="text" id="contact-last-name" placeholder="Enter last name">
+
+                <label for="contact-phone-number">Phone number:</label>
+                <input type="tel" id="contact-phone-number" placeholder="Enter phone number">
+
+                <input class="save-button" type="submit" value="Save">
+
+
+            </form>
+        </div>
+
+
+
+    </div>
+
+</div>
+</body>
+</html>

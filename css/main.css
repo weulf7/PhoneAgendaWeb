@@ -1,0 +1,85 @@
+#contacts {
+font-family: Ranchers;
+border-collapse: collapse;
+    width: 100%;
+}
+
+#contacts td, #contacts th {
+    border: 2px solid black;
+    padding: 8px;
+
+}
+
+#contacts tr:nth-child(even){background-color: #f2f2f2;}
+
+#contacts tr:hover {background-color: #ddd;}
+
+#contacts th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+.title{
+    text-align: center;
+    font-size:5rem;
+    font-family: Ranchers;
+    color:#4CAF50;
+}
+
+#contacts th{
+    font-size: 3rem;
+}
+#contacts td{
+    font-size: 2rem;
+}
+
+#existing-contact{
+    margin-top:50px;
+}
+#create-contact{
+    text-align: center;
+    font-family: Ranchers;
+    font-size:2rem;
+    background: #4CAF50;
+    padding-bottom: 2%;
+    border:2px solid black;
+    margin-top:20px;
+}
+#create-contact-form input{
+   padding:1% 1% 1% 1%;
+    border-radius: 10%;
+    border:0;
+
+}
+
+#create-contact-form label{
+
+    position: relative;
+    top:8px;
+}
+
+.fa-user-edit{
+    padding-left:4%;
+}
+
+.fas{
+    color:black;
+}
+.fas:hover{
+    color:#4CAF50;
+}
+
+.save-button{
+    background-color: snow;
+    color:#4CAF50;
+    font-family:Ranchers;
+    width:6rem;
+    margin-left:20px;
+}
+html{
+    background-image: url("https://www.incimages.com/uploaded_files/image/1920x1080/westworld-2-hbo-background-1920_419617.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
