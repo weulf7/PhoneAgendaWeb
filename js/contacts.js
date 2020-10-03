@@ -54,6 +54,7 @@ window.PhoneAgenda = {
 
         }).done(function (response) {
             PhoneAgenda.displayContacts(JSON.parse(response));
+            PhoneAgenda.hideButtonUpdate();
         })
     },
 
@@ -128,6 +129,14 @@ window.PhoneAgenda = {
 
     },
 
+    hideButtonUpdate:function (){
+        $(".update-button").hide();
+    },
+
+    hideButtonSave:function (){
+        $(".save-button").hide();
+    },
+
 
 
     bindEvents: function () {
@@ -144,12 +153,20 @@ window.PhoneAgenda = {
            event.preventDefault();
             let id=$(this).data('id');
            PhoneAgenda.updateContacts(id);
+           $(".save-button").show();
+            $(".create-update").text("Create contact");
+
         });
 
 
 
         $('#contacts').delegate('.fa-user-edit','click', function (event) {
             event.preventDefault();
+
+            $(".create-update").text("Update contact");
+            PhoneAgenda.hideButtonSave();
+            $(".update-button").show();
+
 
             let id=$(this).data('id');
             const firstName = $(this).data("first");
