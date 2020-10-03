@@ -71,7 +71,7 @@ border-collapse: collapse;
     color:#4CAF50;
 }
 
-.save-button{
+.save-button .update-button{
     background-color: snow;
     color:#4CAF50;
     font-family:Ranchers;
@@ -79,7 +79,7 @@ border-collapse: collapse;
     margin-left:20px;
 }
 html{
-    background-image: url("https://www.incimages.com/uploaded_files/image/1920x1080/westworld-2-hbo-background-1920_419617.jpg");
+    background-image: url("https://marketplace.canva.com/EAD2962NKnQ/2/0/800w/canva-rainbow-gradient-pink-and-purple-zoom-virtual-background-98aZLNQxJXg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }

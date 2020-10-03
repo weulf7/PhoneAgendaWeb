@@ -1,3 +1,5 @@
+let editId="";
+
 //This is like a class in JAVA
 window.PhoneAgenda = {
 
@@ -10,17 +12,19 @@ window.PhoneAgenda = {
 
     createTask: function () {
 
-        //We identify with jquerry the element
+        //We identify with jQuery the element
 
         const firstNameValue = $('#contact-first-name').val();
         const lastNameValue = $('#contact-last-name').val();
         const phoneNumberValue = $('#contact-phone-number').val();
+        const emailValue = $('#contact-email').val();
 
 
         let body = {
             firstName: firstNameValue,
             lastName: lastNameValue,
-            phoneNumber: phoneNumberValue
+            phoneNumber: phoneNumberValue,
+            email:emailValue
 
         };
 
@@ -53,34 +57,42 @@ window.PhoneAgenda = {
         })
     },
 
-    updateContact:function (id,firstName, lastName, phoneNumber){
+    clearForm:function (){
+        document.getElementById("create-contact-form").reset();
+    },
 
+    updateContacts:function(id){
         const firstNameValue = $('#contact-first-name').val();
         const lastNameValue = $('#contact-last-name').val();
         const phoneNumberValue = $('#contact-phone-number').val();
+        const emailValue = $('#contact-email').val();
 
 
         let body = {
-            firstName:firstNameValue,
-            lastName:lastNameValue,
-            phoneNumber:phoneNumberValue
-        }
+            firstName: firstNameValue,
+            lastName: lastNameValue,
+            phoneNumber: phoneNumberValue,
+            email: emailValue
+        };
+
+        console.log(body);
 
 
+        $.ajax({
+            url:PhoneAgenda.API_URL + '?id='+id,
+            method:"PUT",
+            contentType: "application/json",
+            data: JSON.stringify(body)
 
-      $.ajax({
-          url:PhoneAgenda.API_URL + '?id='+id,
-          method:"PUT",
-          contentType: "application/jason",
-          data:JSON.stringify(body)
-      }).done(function (){
-          PhoneAgenda.getContacts();
-      })
-
-
-
+        }).done(function (response) {
+            // PhoneAgenda.updateContacts(id);
+            PhoneAgenda.clearForm();
+            PhoneAgenda.getContacts();
+        });
 
     },
+
+
 
     deleteContact:function (id){
         $.ajax({
@@ -98,8 +110,9 @@ window.PhoneAgenda = {
                 <td >${contact.firstName}</td>
                 <td >${contact.lastName}</td>
                 <td >${contact.phoneNumber}</td>
-                <td><a href="#" class="fas fa-trash-alt" data-id=${contact.id}></a>
-                    <a href="#" class="fas fa-user-edit" data-id=${contact.id}></a>
+                <td>${contact.email}</td>
+                <td><a href="#" class="fas fa-trash-alt"  data-id=${contact.id}></a>
+                    <a href="#" class="fas fa-user-edit" data-first=${contact.firstName} data-last=${contact.lastName} data-phone=${contact.phoneNumber} data-email=${contact.email} data-id=${contact.id}></a>
                 </td>
              </tr>
         `
@@ -116,6 +129,7 @@ window.PhoneAgenda = {
     },
 
 
+
     bindEvents: function () {
         const submit = $('.save-button').click(function (event) {
             //We stop the default
@@ -126,27 +140,48 @@ window.PhoneAgenda = {
 
         });
 
-    $('#contacts').delegate('.fa-user-edit', 'click',function (event){
-        event.preventDefault();
-
-        const id = $(this).data("id");
-
-
-
-        PhoneAgenda.updateContact();
+        $('.update-button').click(function (event){
+           event.preventDefault();
+            let id=$(this).data('id');
+           PhoneAgenda.updateContacts(id);
         });
 
 
-    $('#contacts').delegate('.fa-trash-alt','click', function (event){
-       event.preventDefault();
 
-       const  id = $(this).data('id');
+        $('#contacts').delegate('.fa-user-edit','click', function (event) {
+            event.preventDefault();
 
-       PhoneAgenda.deleteContact(id);
+            let id=$(this).data('id');
+            const firstName = $(this).data("first");
+            const last = $(this).data("last");
+            const phone=$(this).data("phone");
+            const email=$(this).data("email");
+
+            $('.update-button').data("id",id);
+            $('#contact-first-name').val(firstName);
+            $('#contact-last-name').val(last);
+            $('#contact-phone-number').val(phone);
+            $('#contact-email').val(email);
+
+
+
+        });
+
+
+
+    $('#contacts').delegate('.fa-trash-alt','click', function (event) {
+        event.preventDefault();
+
+        const id = $(this).data('id');
+
+        PhoneAgenda.deleteContact(id);
 
     });
 
-    }
+        },
+
+
+
 
 };
 PhoneAgenda.getContacts();
